@@ -2,6 +2,35 @@ console.log("Welcome To TIC TAC TOE");
 let turn = "X";
 gameover = true;
 
+var audioElement = document.getElementById("myAudio");
+var playButton = document.getElementById("playButton");
+
+function toggleMusic() {
+  if (audioElement.paused) {
+    audioElement.play();
+    playButton.textContent = "Stop";
+  } else {
+    audioElement.pause();
+    audioElement.currentTime = 0;
+    playButton.textContent = "Play";
+  }
+}
+
+playButton.addEventListener("click", toggleMusic);
+
+function playMusic() {
+    // Create an <audio> element
+    const ting = new Audio();
+  
+    // Set the audio file source
+    ting.src = 'ting.mp3';
+  
+    // Play the audio
+    ting.play();
+  }
+
+  
+
 // two function 
 // to change the tuen
 
@@ -46,6 +75,7 @@ Array.from(boxes).forEach(element =>{
         if(boxtext.innerText === ""){
             boxtext.innerText = turn;
             turn = changeturn();
+            playMusic();
             checkwin();
             if(gameover = false){
                 document.getElementsByClassName('info')[0].innerText = "Turn for "+ turn;
